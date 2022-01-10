@@ -10,7 +10,7 @@ app.use(cors());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
-
+app.use(bodyParser.json());
 
 app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}`)
@@ -43,6 +43,7 @@ app.post("/session", (req, res) => {
   }
   else if (gm.username === req.body.username) {
     gm.access_token = accessToken;
+    session.is_gm = true;
   }
   else {
     session.is_gm = false;
